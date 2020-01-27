@@ -5,9 +5,12 @@ import {
     Route,
     Link
 } from "react-router-dom";
+import HeaderHome from "./pages/Home/headerhome";
 import Home from "./pages/Home";
+import FooterHome from "./pages/Home/footerhome";
 import Header from "./components/header";
 import Login from "./pages/Login";
+import Cadastro from "./pages/Cadastro"
 import Footer from "./components/footer";
 import outerTheme from "./theme";
 import { ThemeProvider } from "@material-ui/core";
@@ -25,17 +28,24 @@ export default function Rotas() {
     return (
         <>
             <ThemeProvider theme={theme ? outerThemeDark : outerTheme}>
-                <Header dark={theme} handleDark={handleDark} />
-
                 <Switch>
                     <Route exact path="/">
+                        <Header />
                         <Home />
+                        <FooterHome />
+
                     </Route>
                     <Route exact path="/login">
+                        <Header login />
                         <Login />
+                        <Footer />
+                    </Route>
+                    <Route exact path="/cadastro">
+                        <Header />
+                        <Cadastro />
+                        <Footer />
                     </Route>
                 </Switch>
-                <Footer />
 
             </ThemeProvider>
         </>

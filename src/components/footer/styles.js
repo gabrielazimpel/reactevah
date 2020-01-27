@@ -1,9 +1,8 @@
 
-
 const styles = ({
     button: {
-        color: '#000',
-        backgroundColor: '#fff',
+        color: 'white',
+        backgroundColor: 'black',
         fontSize: 18
     }
 })
