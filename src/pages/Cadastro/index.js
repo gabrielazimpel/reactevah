@@ -19,6 +19,17 @@ export default function Cadastro() {
         c.preventDefault()
     }
 
+    function mudarbotaocadastro() {
+        window.document.getElementById("mandar").style.background = "#00FFFF";
+        window.document.getElementById("mandar").style.color="#FFFF";
+    }
+
+
+    function mudarbotaosaircadastro() {
+        window.document.getElementById("mandar").style.background = "#000";
+        window.document.getElementById("mandar").style.color="#FFFF";
+    }
+
     return (
         <main>
             <Container maxWidth="sm" style={{marginTop: 80, marginBottom: 50}}>
@@ -72,7 +83,7 @@ export default function Cadastro() {
                         onChange={(c) => setForm({ ...form, senha: c.target.value})  }
                         style={{marginBottom: 15}}
                     />
-                    <Button fullWidth type="submit" href="/login" style={{fontSize: 20}}>
+                    <Button fullWidth onMouseEnter={mudarbotaocadastro} onMouseLeave={mudarbotaosaircadastro} type="submit" href="/login" style={{fontSize: 20}} id="mandar">
                         Cadastrar
                     </Button>
                 

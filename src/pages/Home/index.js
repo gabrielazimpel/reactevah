@@ -1,18 +1,58 @@
-import React from "react";
-import { Container, Grid } from "@material-ui/core";
+import React, { useState, useEffect } from "react";
+import { Container, Grid, TextField, Modal } from "@material-ui/core";
 import { findByLabelText } from "@testing-library/react";
+import axios from 'axios'
+import Personagens from "./Personagens";
+
 
 export default function Home() {
+
+    const [personagens, setPersonagens] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+
+    useEffect(() => {
+        setLoading(true)
+        getPersonagens()
+    }, []);
+
+    const getPersonagens = async () => {
+        const response = await axios.get('https://www.breakingbadapi.com/api/characters/')
+        setPersonagens(response.data)
+    }
+
+    useEffect(() => {
+        setLoading(false)
+    }, [personagens]);
+
     return (
         <main>
 
-            <Container maxWidth="md" style={{ flexDirection: 'row', justifyItems: 'center', textAlign: 'center'}}>
+            <Container maxWidth="md" style={{justifyItems: 'center', textAlign: 'center', display: 'flex'}}>
 
-                <h1>Home</h1>
 
-                <img src="https://gooutside-static-cdn.akamaized.net/wp-content/uploads/sites/3/2019/09/os-finalistas-do-concurso-de-fotos-engracadas-de-animais-selvagens.jpg" alt="imagem aleatória" width= "700" height= "400"/>
+
 
                 <Grid container direction="row"
+                    justify="center"
+                    alignItems="center"
+                    spacing={2}
+                >
+                    {
+                        loading ? <h1>Loading...</h1> : <>
+                            {
+                                personagens.map((value, index) => (
+                                    <Personagens personagem={value}/>
+                                ))
+                            }
+                        </>
+                    }
+                </Grid>
+                {/* <h1>Home</h1>
+
+                <img src="https://gooutside-static-cdn.akamaized.net/wp-content/uploads/sites/3/2019/09/os-finalistas-do-concurso-de-fotos-engracadas-de-animais-selvagens.jpg" alt="imagem aleatória" width="700" height="400" />
+
+                 <Grid container direction="row"
                     justify="center"
                     alignItems="center" spacing={2}>
                     <Grid item xs={12} lg={4}>
@@ -31,7 +71,7 @@ export default function Home() {
                         <p style={{ textAlign: 'center' }}>Gosto de Super-heróis</p>
                         <p style={{ textAlign: 'center' }}>Muita humildade</p>
                     </Grid>
-                </Grid>
+                </Grid> */}
 
             </Container>
         </main>
