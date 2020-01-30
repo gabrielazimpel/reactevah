@@ -9,6 +9,7 @@ import HeaderHome from "./pages/Home/headerhome";
 import Home from "./pages/Home";
 import FooterHome from "./pages/Home/footerhome";
 import Header from "./components/header";
+import Indivídual from "./pages/Personagensindividuais"
 import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro"
 import Footer from "./components/footer";
@@ -33,7 +34,11 @@ export default function Rotas() {
                         <Header />
                         <Home />
                         <FooterHome />
-
+                    </Route>
+                    <Route exact path="/:id">
+                        <Header />
+                        <Indivídual />
+                        <FooterHome />
                     </Route>
                     <Route exact path="/login">
                         <Header login />

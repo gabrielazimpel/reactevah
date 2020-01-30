@@ -15,7 +15,6 @@ export default function Cadastro() {
     });
 
     function submit(c) {
-        console.log(form)
         c.preventDefault()
     }
 
